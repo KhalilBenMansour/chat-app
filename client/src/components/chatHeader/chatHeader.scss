@@ -1,0 +1,41 @@
+.chatHeader {
+  background-color: aqua;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  .person {
+    background-color: green;
+    flex: 3;
+    display: flex;
+    .personPhoto {
+      background-color: red;
+      width: 40px;
+      height: 40px;
+
+      .photo {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: 50% 10%;
+      }
+    }
+    .personInfo {
+      background-color: blue;
+      padding: 2px;
+      .name {
+        font-weight: bold;
+      }
+      .status {
+        color: gray;
+      }
+    }
+  }
+  .option {
+    background-color: orange;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
