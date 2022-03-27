@@ -1,5 +1,23 @@
+$who: "my" flex-end #eee, "other" flex-start aquamarine;
+@mixin msg-box {
+  max-width: 150px;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
 .chatContent {
-  background-color: blue;
   padding: 5px;
   height: 300px;
+  overflow-y: scroll;
+  .msgs {
+    display: flex;
+    flex-direction: column;
+    @each $person, $self, $color in $who {
+      .#{$person}-msg {
+        align-self: $self;
+        background-color: $color;
+        @include msg-box;
+      }
+    }
+  }
 }
