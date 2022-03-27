@@ -1,17 +1,15 @@
+@use "../../sass/abstracts/variables" as c;
 .chatHeader {
-  background-color: aqua;
+  background-color: c.$mainColor;
   padding: 5px;
   display: flex;
   justify-content: space-between;
   .person {
-    background-color: green;
     flex: 3;
     display: flex;
     .personPhoto {
-      background-color: red;
       width: 40px;
       height: 40px;
-
       .photo {
         width: 40px;
         height: 40px;
@@ -21,7 +19,6 @@
       }
     }
     .personInfo {
-      background-color: blue;
       padding: 2px;
       .name {
         font-weight: bold;
@@ -32,10 +29,9 @@
     }
   }
   .option {
-    background-color: orange;
     flex: 1;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
   }
 }
