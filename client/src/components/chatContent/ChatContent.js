@@ -1,9 +1,18 @@
 import "./chatContent.scss";
-const ChatContent = () => {
+
+const ChatContent = ({ msges }) => {
   return (
     <div className="chatContent">
       <div className="msgs">
-        <div className="my-msg">
+        {msges.map((msg) => (
+          <div
+            key={msg.msgId}
+            className={msg.currentUser ? "my-msg" : "other-msg"}
+          >
+            {msg.text}
+          </div>
+        ))}
+        {/* <div className="my-msg">
           hi oussema thanks for your support you are such a generous man who
           helped me when i were stuck
         </div>
@@ -16,7 +25,7 @@ const ChatContent = () => {
           hi oussema thanks for your support you are such a generous man who
           helped me when i were stuck
         </div>
-        <div className="my-msg">hi ous</div>
+        <div className="my-msg">hi ous</div> */}
       </div>
     </div>
   );

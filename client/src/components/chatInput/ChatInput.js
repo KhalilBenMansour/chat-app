@@ -1,18 +1,38 @@
 import "./chatInput.scss";
 import { MdAddCircleOutline, MdSend } from "react-icons/md";
-const ChatInput = () => {
+import { useState } from "react";
+
+const ChatInput = ({ sendMsg }) => {
+  const [msg, setmsg] = useState("");
+  const handleChange = (e) => {
+    setmsg(e.target.value);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!msg) {
+      return;
+    }
+    sendMsg(msg);
+    setmsg("");
+  };
+
   return (
-    <div className="chatInput">
-      <div className="add-div">
+    <form className="chatInput" onSubmit={handleSubmit}>
+      <button className="add-div">
         <MdAddCircleOutline className="add-icon" />
-      </div>
+      </button>
       <div className="input-div">
-        <input type="text" className="input-field" />
+        <input
+          type="text"
+          className="input-field"
+          value={msg}
+          onChange={handleChange}
+        />
       </div>
-      <div className="send-div">
+      <button className="send-div">
         <MdSend className="send-icon" />
-      </div>
-    </div>
+      </button>
+    </form>
   );
 };
 
