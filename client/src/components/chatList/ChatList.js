@@ -42,6 +42,56 @@ const msgDesc = [
     timeAgo: "5 min",
     numUnreadMsg: 3,
   },
+
+  {
+    id: 7,
+    sender: "khalil ben mansour",
+    lastMsg: "hello how are you...",
+    timeAgo: "5 min",
+    numUnreadMsg: 3,
+  },
+  {
+    id: 8,
+    sender: "khalil ben mansour",
+    lastMsg: "hello how are you...",
+    timeAgo: "5 min",
+    numUnreadMsg: 3,
+  },
+  {
+    id: 9,
+    sender: "khalil ben mansour",
+    lastMsg: "hello how are you...",
+    timeAgo: "5 min",
+    numUnreadMsg: 3,
+  },
+  {
+    id: 10,
+    sender: "khalil ben mansour",
+    lastMsg: "hello how are you...",
+    timeAgo: "5 min",
+    numUnreadMsg: 3,
+  },
+  {
+    id: 11,
+    sender: "khalil ben mansour",
+    lastMsg: "hello how are you...",
+    timeAgo: "5 min",
+    numUnreadMsg: 3,
+  },
+  {
+    id: 12,
+    sender: "khalil ben mansour",
+    lastMsg: "hello how are you...",
+    timeAgo: "5 min",
+    numUnreadMsg: 3,
+  },
+  {
+    id: 13,
+    sender: "khalil ben mansour",
+    lastMsg: "hello how are you...",
+    timeAgo: "5 min",
+    numUnreadMsg: 3,
+  },
 ];
 
 const ChatList = () => {
