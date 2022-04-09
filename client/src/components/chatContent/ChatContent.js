@@ -1,6 +1,9 @@
 import "./chatContent.scss";
 
-const ChatContent = ({ msges }) => {
+const ChatContent = ({ msges, users }) => {
+  const findUser = (id) => {
+    return users.find((user) => user.userId === id);
+  };
   return (
     <div className="chatContent">
       <div className="msgs">
@@ -8,24 +11,18 @@ const ChatContent = ({ msges }) => {
           <div
             key={msg.msgId}
             className={msg.currentUser ? "my-msg" : "other-msg"}
+            style={{ display: "flex" }}
           >
-            {msg.text}
+            <figure className={msg.currentUser ? "my-figure" : "other-figure"}>
+              <img
+                src={msg.photo}
+                alt={findUser(msg.userId).userName}
+                className="person-photo"
+              />
+            </figure>
+            <div className="person-text">{msg.text}</div>
           </div>
         ))}
-        {/* <div className="my-msg">
-          hi oussema thanks for your support you are such a generous man who
-          helped me when i were stuck
-        </div>
-        <div className="my-msg">hi ous</div>
-
-        <div className="other-msg">thank you</div>
-        <div className="other-msg">hi khalil</div>
-
-        <div className="my-msg">
-          hi oussema thanks for your support you are such a generous man who
-          helped me when i were stuck
-        </div>
-        <div className="my-msg">hi ous</div> */}
       </div>
     </div>
   );
