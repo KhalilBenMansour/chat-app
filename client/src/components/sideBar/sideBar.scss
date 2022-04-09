@@ -1,0 +1,45 @@
+.sideBar {
+  grid-area: sideBar;
+  background-color: red;
+  .sideBar-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      "logo"
+      "toolkit-0"
+      "toolkit-1"
+      "."
+      "."
+      "."
+      "."
+      "."
+      "."
+      "."
+      "dark-mode"
+      "setting";
+
+    .logo {
+      grid-area: logo;
+      padding: 1em;
+    }
+    .toolkit-0 {
+      grid-area: toolkit-0;
+      padding: 1em;
+    }
+    .toolkit-1 {
+      grid-area: toolkit-1;
+      padding: 1em;
+    }
+    .dark-mode {
+      grid-area: dark-mode;
+      padding: 1em;
+    }
+    .setting {
+      grid-area: setting;
+      padding: 1em;
+    }
+  }
+}
