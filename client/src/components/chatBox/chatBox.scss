@@ -1,8 +1,8 @@
 @use "../../sass/abstracts/variables" as c;
 .chatBox {
-  width: 300px;
-  margin: auto;
-  margin-top: 60px;
+  background-color: purple;
+  height: 100%;
   border: 1px solid c.$mainColor;
-  border-radius: 5px;
+  display: grid;
+  grid-template-rows: 3em 1fr 3em;
 }

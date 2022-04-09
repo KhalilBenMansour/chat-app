@@ -1,0 +1,7 @@
+@mixin user-photo($width) {
+  width: $width;
+  height: $width;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 10%;
+}

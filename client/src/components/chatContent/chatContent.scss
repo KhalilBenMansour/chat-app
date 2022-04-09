@@ -1,22 +1,37 @@
-$who: "my" flex-end #eee, "other" flex-start aquamarine;
+$who: "my" flex-end #eee 1rem left, "other" flex-start aquamarine 2rem right;
+@use "../../sass/abstracts/mixins" as *;
 @mixin msg-box {
   max-width: 150px;
-  margin-top: 5px;
   padding: 5px;
   border-radius: 5px;
 }
+
 .chatContent {
   padding: 5px;
-  height: 300px;
-  overflow-y: scroll;
+  overflow-y: auto;
   .msgs {
     display: flex;
     flex-direction: column;
-    @each $person, $self, $color in $who {
+    @each $person, $self, $color, $size, $dir in $who {
       .#{$person}-msg {
         align-self: $self;
-        background-color: $color;
-        @include msg-box;
+        margin-top: 5px;
+        .person-text {
+          background-color: $color;
+          @include msg-box;
+        }
+        .#{$person}-figure {
+          width: $size;
+          height: $size;
+          align-self: flex-end;
+          margin-#{$dir}: 5px;
+          @if ($person== "my") {
+            order: 1;
+          }
+          .person-photo {
+            @include user-photo(100%);
+          }
+        }
       }
     }
   }

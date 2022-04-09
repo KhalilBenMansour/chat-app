@@ -15,7 +15,7 @@ const ChatBox = () => {
   return (
     <div className="chatBox">
       <ChatHeader />
-      <ChatContent msges={msges} />
+      <ChatContent msges={msges} users={users} />
       <ChatInput sendMsg={sendMsg} />
     </div>
   );
