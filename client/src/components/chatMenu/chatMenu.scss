@@ -1,0 +1,25 @@
+.chatMenu {
+  grid-area: chatMenu;
+  min-width: 16em;
+  background-color: green;
+  .chat-header {
+    display: flex;
+    justify-content: space-between;
+    .chat-left {
+      padding: 5px;
+    }
+    .chat-right {
+      display: flex;
+      padding: 5px;
+
+      .add-group {
+        align-self: center;
+        padding: inherit;
+      }
+      .add-friend {
+        align-self: center;
+        padding: inherit;
+      }
+    }
+  }
+}
