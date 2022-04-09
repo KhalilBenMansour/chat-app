@@ -1,18 +1,16 @@
 @use "../../sass/abstracts/mixins" as *;
 .chat-list {
-  background-color: purple;
-  padding: 5px;
+  height: 100%;
   .chat-list-list {
-    background-color: blue;
     list-style: none;
-    margin: 0;
-    padding: 0;
+    height: 100%;
+    overflow-y: scroll;
 
     .chat-list-item {
       display: flex;
       align-items: center;
       padding: 5px;
-      border-bottom: 1px solid gray;
+      border-bottom: 1px solid #eee;
 
       .friend-figure {
         margin: 0;
