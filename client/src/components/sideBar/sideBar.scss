@@ -1,11 +1,24 @@
+@use "../../sass/abstracts/mixins" as *;
+@mixin side-bottom {
+  @include centering;
+  width: 2.75em;
+  height: 2.75em;
+  border-radius: 5px;
+  &:hover {
+    background-color: #ddd;
+    color: rgb(32, 152, 156);
+  }
+}
 .sideBar {
   grid-area: sideBar;
-  background-color: red;
+  border-right: 1px solid #eee;
+  padding: 5px;
   .sideBar-menu {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
+    row-gap: 5px;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
       "logo"
@@ -23,23 +36,23 @@
 
     .logo {
       grid-area: logo;
-      padding: 1em;
+      @include side-bottom;
     }
     .toolkit-0 {
       grid-area: toolkit-0;
-      padding: 1em;
+      @include side-bottom;
     }
     .toolkit-1 {
       grid-area: toolkit-1;
-      padding: 1em;
+      @include side-bottom;
     }
     .dark-mode {
       grid-area: dark-mode;
-      padding: 1em;
+      @include side-bottom;
     }
     .setting {
       grid-area: setting;
-      padding: 1em;
+      @include side-bottom;
     }
   }
 }

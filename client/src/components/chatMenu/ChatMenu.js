@@ -10,18 +10,22 @@ const ChatMenu = () => {
           <h3 className="chat-title">Chats</h3>
         </div>
         <div className="chat-right">
-          <div className="add-group">
+          <div className="chatMenu-button">
             <AiOutlineUsergroupAdd />
           </div>
-          <div className="add-friend">
+          <div className="chatMenu-button">
             <CgAddR />
           </div>
         </div>
       </header>
       <section className="chat-body">
-        <div>
-          <input type="text" className="chat-search" />
-        </div>
+        <form className="search-form">
+          <input
+            type="text"
+            placeholder="search chats ..."
+            className="search-input"
+          />
+        </form>
         <ChatList />
       </section>
     </div>
