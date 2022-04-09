@@ -1,8 +1,4 @@
-@mixin centering {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+@use "../../sass/abstracts/mixins" as *;
 @mixin chat-button {
   @include centering;
   align-self: center;
