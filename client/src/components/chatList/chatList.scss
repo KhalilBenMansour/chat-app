@@ -1,0 +1,70 @@
+@use "../../sass/abstracts/mixins" as *;
+.chat-list {
+  background-color: purple;
+  padding: 5px;
+  .chat-list-list {
+    background-color: blue;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    .chat-list-item {
+      display: flex;
+      align-items: center;
+      padding: 5px;
+      border-bottom: 1px solid gray;
+
+      .friend-figure {
+        margin: 0;
+        margin-right: 0.75em;
+        display: inline-block;
+        width: 2.3rem;
+        height: 2.3rem;
+        position: relative;
+        &::before {
+          content: "";
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          width: 10px;
+          height: 10px;
+          border: 1px solid white;
+          border-radius: 50%;
+          background-color: green;
+        }
+        .friend-img {
+          @include user-photo(2.3rem);
+        }
+      }
+      .msg-desc {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .left {
+          .friend-name {
+            margin: 0;
+            font-size: 1em;
+          }
+          .last-msg {
+            margin: 0;
+            font-size: 0.75em;
+          }
+        }
+        .right {
+          padding: 5px;
+          .last-msg-num {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 1em;
+            height: 1.25em;
+            background-color: gray;
+            border-radius: 0.25em;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
