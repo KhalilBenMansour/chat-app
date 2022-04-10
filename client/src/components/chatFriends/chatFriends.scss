@@ -1,0 +1,53 @@
+@use "../../sass/abstracts/mixins" as *;
+@use "../../sass/abstracts/functions" as *;
+$types: "chats" "friends";
+
+@each $type in $types {
+  .#{$type} {
+    height: 100%;
+    .#{$type}-header {
+      height: 3em;
+      display: flex;
+      justify-content: space-between;
+      .#{$type}-left {
+        @include centering;
+        padding: 5px;
+        .chats-title {
+          text-transform: capitalize;
+        }
+      }
+      .#{$type}-right {
+        display: flex;
+        width: widthOnType($type);
+        justify-content: space-evenly;
+        padding: 5px;
+
+        .#{$type}-button {
+          @include chat-button;
+        }
+      }
+    }
+    .#{$type}-body {
+      height: calc(100% - 6.5em);
+      .#{$type}-search-form {
+        @include centering;
+        height: 3.5em;
+        width: 100%;
+        padding: 0.5em;
+        .#{$type}-search-input {
+          width: 100%;
+          height: 2.5em;
+          border-radius: 5px;
+          padding: 0.5em;
+          border: 1px solid #ddd;
+          background-color: transparent;
+          border-style: solid;
+          outline-color: gray;
+          &:focus {
+            border: 1px solid #4285f4;
+          }
+        }
+      }
+    }
+  }
+}
