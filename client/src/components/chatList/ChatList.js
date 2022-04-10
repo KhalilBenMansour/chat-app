@@ -94,24 +94,28 @@ const msgDesc = [
   },
 ];
 
-const ChatList = () => {
+const ChatList = ({ type }) => {
   return (
-    <div className="chat-list">
-      <ul className="chat-list-list">
+    <div className={`${type}-list`}>
+      <ul className={`${type}-list-list`}>
         {msgDesc.map((e) => (
-          <li key={e.id} className="chat-list-item">
-            <figure className="friend-figure">
-              <img src="./khalil.jpg" alt="friend-img" className="friend-img" />
+          <li key={e.id} className={`${type}-list-item`}>
+            <figure className={`${type}-figure`}>
+              <img
+                src="./khalil.jpg"
+                alt="friend-img"
+                className={`${type}-img`}
+              />
             </figure>
-            <div className="msg-desc">
-              <div className="left">
-                <h5 className="friend-name">{e.sender}</h5>
-                <p className="last-msg">
+            <div className={`${type}-desc`}>
+              <div className={`${type}-left`}>
+                <h5 className={`${type}-name`}>{e.sender}</h5>
+                <p className={`${type}-last-msg`}>
                   {e.lastMsg} <small>{e.timeAgo}</small>
                 </p>
               </div>
-              <div className="right">
-                <div className="last-msg-num">{e.numUnreadMsg}</div>
+              <div className={`${type}-right`}>
+                <div className={`${type}-msg-num`}>{e.numUnreadMsg}</div>
               </div>
             </div>
           </li>

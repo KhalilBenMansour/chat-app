@@ -1,18 +1,18 @@
 @use "../../sass/abstracts/mixins" as *;
-.chat-list {
+.chats-list {
   height: 100%;
-  .chat-list-list {
+  .chats-list-list {
     list-style: none;
     height: 100%;
     overflow-y: scroll;
 
-    .chat-list-item {
+    .chats-list-item {
       display: flex;
       align-items: center;
       padding: 5px;
       border-bottom: 1px solid #eee;
 
-      .friend-figure {
+      .chats-figure {
         margin: 0;
         margin-right: 0.75em;
         display: inline-block;
@@ -30,28 +30,93 @@
           border-radius: 50%;
           background-color: green;
         }
-        .friend-img {
+        .chats-img {
           @include user-photo(2.3rem);
         }
       }
-      .msg-desc {
+      .chats-desc {
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        .left {
-          .friend-name {
+        .chats-left {
+          .chats-name {
             margin: 0;
             font-size: 1em;
           }
-          .last-msg {
+          .chats-last-msg {
             margin: 0;
             font-size: 0.75em;
           }
         }
-        .right {
+        .chats-right {
           padding: 5px;
-          .last-msg-num {
+          .chats-msg-num {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 1em;
+            height: 1.25em;
+            background-color: gray;
+            border-radius: 0.25em;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
+.friends-list {
+  height: 100%;
+  .friends-list-list {
+    list-style: none;
+    height: 100%;
+    overflow-y: scroll;
+    .friends-list-item {
+      display: flex;
+      align-items: center;
+      padding: 5px;
+      border-bottom: 1px solid #eee;
+      .friends-figure {
+        margin: 0;
+        margin-right: 0.75em;
+        display: inline-block;
+        width: 2.3rem;
+        height: 2.3rem;
+        position: relative;
+        &::before {
+          content: "";
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          width: 10px;
+          height: 10px;
+          border: 1px solid white;
+          border-radius: 50%;
+          background-color: green;
+        }
+        .friends-img {
+          @include user-photo(2.3rem);
+        }
+      }
+      .friends-desc {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .friends-left {
+          .friends-name {
+            margin: 0;
+            font-size: 1em;
+          }
+          .friends-last-msg {
+            margin: 0;
+            font-size: 0.75em;
+          }
+        }
+        .friends-right {
+          padding: 5px;
+          .friends-msg-num {
             display: flex;
             justify-content: center;
             align-items: center;
