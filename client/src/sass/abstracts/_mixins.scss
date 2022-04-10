@@ -10,3 +10,14 @@
   object-fit: cover;
   object-position: 50% 10%;
 }
+@mixin chat-button {
+  @include centering;
+  align-self: center;
+  padding: inherit;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  &:hover {
+    background-color: #ddd;
+    cursor: pointer;
+  }
+}
