@@ -5,6 +5,7 @@
   height: 2.75em;
   border-radius: 5px;
   &:hover {
+    cursor: pointer;
     background-color: #ddd;
     color: rgb(32, 152, 156);
   }
