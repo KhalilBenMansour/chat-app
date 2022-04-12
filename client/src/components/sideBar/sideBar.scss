@@ -11,10 +11,12 @@
   }
 }
 .sideBar {
+  height: 100vh;
   grid-area: sideBar;
   border-right: 1px solid #eee;
   padding: 5px;
   .sideBar-menu {
+    height: 100%;
     list-style: none;
     margin: 0;
     padding: 0;
