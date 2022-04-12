@@ -1,0 +1,9 @@
+@function widthOnType($type) {
+  @if $type== "chats" {
+    @return 5em;
+  } @else if $type== "friends" {
+    @return 3em;
+  } @else {
+    @error "This Direction #{$type} Is Not Valid";
+  }
+}

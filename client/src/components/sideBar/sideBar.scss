@@ -5,15 +5,18 @@
   height: 2.75em;
   border-radius: 5px;
   &:hover {
+    cursor: pointer;
     background-color: #ddd;
     color: rgb(32, 152, 156);
   }
 }
 .sideBar {
+  height: 100vh;
   grid-area: sideBar;
   border-right: 1px solid #eee;
   padding: 5px;
   .sideBar-menu {
+    height: 100%;
     list-style: none;
     margin: 0;
     padding: 0;
