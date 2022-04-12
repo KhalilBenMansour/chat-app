@@ -1,130 +1,73 @@
 @use "../../sass/abstracts/mixins" as *;
-.chats-list {
-  height: 100%;
-  .chats-list-list {
-    list-style: none;
+$types: "chats", "friends";
+@each $type in $types {
+  .#{$type}-list {
     height: 100%;
-    overflow-y: scroll;
+    .#{$type}-list-list {
+      list-style: none;
+      height: 100%;
+      overflow-y: auto;
 
-    .chats-list-item {
-      display: flex;
-      align-items: center;
-      padding: 5px;
-      border-bottom: 1px solid #eee;
-
-      .chats-figure {
-        margin: 0;
-        margin-right: 0.75em;
-        display: inline-block;
-        width: 2.3rem;
-        height: 2.3rem;
-        position: relative;
-        &::before {
-          content: "";
-          position: absolute;
-          right: 0;
-          bottom: 0;
-          width: 10px;
-          height: 10px;
-          border: 1px solid white;
-          border-radius: 50%;
-          background-color: green;
-        }
-        .chats-img {
-          @include user-photo(2.3rem);
-        }
-      }
-      .chats-desc {
-        width: 100%;
+      .#{$type}-list-item {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        .chats-left {
-          .chats-name {
-            margin: 0;
-            font-size: 1em;
+        padding: 5px;
+        border-bottom: 1px solid #eee;
+
+        .#{$type}-figure {
+          margin: 0;
+          margin-right: 0.75em;
+          display: inline-block;
+          width: 2.3rem;
+          height: 2.3rem;
+          position: relative;
+          &::before {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 10px;
+            height: 10px;
+            border: 1px solid white;
+            border-radius: 50%;
+            background-color: green;
           }
-          .chats-last-msg {
-            margin: 0;
-            font-size: 0.75em;
-          }
-        }
-        .chats-right {
-          padding: 5px;
-          .chats-msg-num {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 1em;
-            height: 1.25em;
-            background-color: gray;
-            border-radius: 0.25em;
-            color: white;
-          }
-        }
-      }
-    }
-  }
-}
-.friends-list {
-  height: 100%;
-  .friends-list-list {
-    list-style: none;
-    height: 100%;
-    overflow-y: scroll;
-    .friends-list-item {
-      display: flex;
-      align-items: center;
-      padding: 5px;
-      border-bottom: 1px solid #eee;
-      .friends-figure {
-        margin: 0;
-        margin-right: 0.75em;
-        display: inline-block;
-        width: 2.3rem;
-        height: 2.3rem;
-        position: relative;
-        &::before {
-          content: "";
-          position: absolute;
-          right: 0;
-          bottom: 0;
-          width: 10px;
-          height: 10px;
-          border: 1px solid white;
-          border-radius: 50%;
-          background-color: green;
-        }
-        .friends-img {
-          @include user-photo(2.3rem);
-        }
-      }
-      .friends-desc {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        .friends-left {
-          .friends-name {
-            margin: 0;
-            font-size: 1em;
-          }
-          .friends-last-msg {
-            margin: 0;
-            font-size: 0.75em;
+          .#{$type}-img {
+            @include user-photo(2.3rem);
           }
         }
-        .friends-right {
-          padding: 5px;
-          .friends-msg-num {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 1em;
-            height: 1.25em;
-            background-color: gray;
-            border-radius: 0.25em;
-            color: white;
+        .#{$type}-desc {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .#{$type}-left {
+            .#{$type}-name {
+              margin: 0;
+              font-size: 1em;
+            }
+            .#{$type}-text {
+              margin: 0;
+              font-size: 0.75em;
+            }
+          }
+          .#{$type}-right {
+            padding: 5px;
+            .#{$type}-msg-num {
+              @include centering;
+              width: 1em;
+              height: 1.25em;
+              @if $type== "chats" {
+                background-color: gray;
+                border-radius: 0.25em;
+                color: white;
+              } @else if $type== "friends" {
+                color: gray;
+                font-size: 1.5em;
+              } @else {
+                @error you cant do this;
+              }
+            }
           }
         }
       }
