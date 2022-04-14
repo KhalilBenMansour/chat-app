@@ -1,22 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ChatContent from "../chatContent/ChatContent";
 import ChatHeader from "../chatHeader/ChatHeader";
 import ChatInput from "../chatInput/ChatInput";
 import "./chatBox.scss";
 import { users, msgs } from "../../dummy";
+import io from "socket.io-client";
+const socket = io.connect("http://localhost:3001");
 const ChatBox = () => {
   const [msges, setmsges] = useState(msgs);
-  const sendMsg = (msg) => {
-    setmsges([
-      ...msges,
-      { msgId: msges.length + 1, text: msg, userId: 1, currentUser: true },
-    ]);
-  };
+  useEffect(() => {
+    socket.on("message", (data) => {
+      setmsges([
+        ...msges,
+        {
+          msgId: msges.length + 1,
+          text: data.message,
+          userId: 1,
+          currentUser: true,
+        },
+      ]);
+    });
+  }, [msges]);
+
   return (
     <div className="chatBox">
       <ChatHeader />
       <ChatContent msges={msges} users={users} />
-      <ChatInput sendMsg={sendMsg} />
+      <ChatInput socket={socket} />
     </div>
   );
 };
