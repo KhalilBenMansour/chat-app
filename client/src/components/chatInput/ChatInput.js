@@ -2,17 +2,19 @@ import "./chatInput.scss";
 import { MdAddCircleOutline, MdSend } from "react-icons/md";
 import { useState } from "react";
 
-const ChatInput = ({ sendMsg }) => {
+const ChatInput = ({ socket }) => {
   const [msg, setmsg] = useState("");
+
   const handleChange = (e) => {
     setmsg(e.target.value);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!msg) {
       return;
     }
-    sendMsg(msg);
+    socket.emit("message", { message: msg });
     setmsg("");
   };
 
