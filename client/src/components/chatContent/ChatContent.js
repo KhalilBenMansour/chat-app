@@ -11,7 +11,6 @@ const ChatContent = ({ msges, users }) => {
           <div
             key={msg.msgId}
             className={msg.currentUser ? "my-msg" : "other-msg"}
-            style={{ display: "flex" }}
           >
             <figure className={msg.currentUser ? "my-figure" : "other-figure"}>
               <img
