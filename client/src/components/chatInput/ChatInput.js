@@ -14,7 +14,13 @@ const ChatInput = ({ socket }) => {
     if (!msg) {
       return;
     }
-    socket.emit("message", { message: msg });
+
+    socket.emit("message", {
+      message: msg,
+      currentUser: true,
+      userId: 1,
+      socketId: socket.id,
+    });
     setmsg("");
   };
 
