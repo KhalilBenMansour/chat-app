@@ -14,8 +14,8 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  socket.on("message", ({ message }) => {
-    io.emit("message", { message });
+  socket.on("message", ({ message, currentUser, userId, socketId }) => {
+    io.emit("message", { message, currentUser, userId, socketId });
   });
 });
 
