@@ -14,6 +14,7 @@ $who: "my" flex-end #eee 1rem left, "other" flex-start aquamarine 2rem right;
     flex-direction: column;
     @each $person, $self, $color, $size, $dir in $who {
       .#{$person}-msg {
+        display: flex;
         align-self: $self;
         margin-top: 5px;
         .person-text {

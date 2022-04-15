@@ -10,13 +10,15 @@ const ChatBox = () => {
   const [msges, setmsges] = useState(msgs);
   useEffect(() => {
     socket.on("message", (data) => {
+      console.log("sender", data.socketId, "reciever", socket.id);
       setmsges([
         ...msges,
         {
           msgId: msges.length + 1,
           text: data.message,
-          userId: 1,
-          currentUser: true,
+          userId: data.socketId === socket.id ? data.userId : 2,
+          currentUser:
+            data.socketId === socket.id ? data.currentUser : !data.currentUser,
         },
       ]);
     });
