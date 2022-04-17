@@ -1,38 +1,32 @@
 const User = require("../models/user");
 
-const userSignUp = async (req, res) => {
-  const { userName, password, photo = "" } = req.body;
+const signUp = async (req, res) => {
+  const createdUser = new User({ ...req.body });
+  if (!createdUser) {
+    return res.status(500).send({ message: "Something is wrong" });
+  }
   try {
-    const createdUser = new User({ userName, password, photo: "" });
-    if (!createdUser) {
-      res.status(500).json({ message: "Something is wrong" });
-    } else {
-      createdUser.save();
-      res.send(createdUser);
-    }
-  } catch (err) {
-    res.json(err);
+    createdUser.save();
+    res.status(201).json({ msg: "user added" });
+  } catch (e) {
+    res.status(400).json({ msg: "failed", e });
   }
 };
 
-const userLogin = async (req, res) => {
+const logIn = async (req, res) => {
   const { userName, password } = req.body;
-  console.log(req.body);
-  try {
-    const user = await User.findOne({ userName });
 
-    if (!user) {
-      res.status(400).json({ message: "The is no such user" });
-    } else {
-      if (user.password === password) {
-        res.send(user);
-      } else {
-        res.status(401).json({ message: "Password is incorrect" });
-      }
-    }
-  } catch (err) {
-    res.json(err);
+  const user = await User.findOne({ userName });
+
+  console.log(user);
+  if (!user) {
+    res.status(400).send({ message: "There is no such user" });
   }
+
+  if (user.password !== password) {
+    res.status(401).send({ message: "Password is incorrect" });
+  }
+  res.send(user);
 };
 
-module.exports = { userLogin, userSignUp };
+module.exports = { signUp, logIn };
