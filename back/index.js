@@ -7,6 +7,8 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const cors = require("cors");
 const users = require("./routes/user");
+const message = require("./routes/message");
+
 const mongoose = require("mongoose");
 const connectDb = require("./config/connectDb");
 
@@ -36,6 +38,7 @@ io.on("connection", (socket) => {
 
 /**********End points*************/
 app.use("/api/users", users);
+app.use("/api/message", message);
 
 server.listen(3001, () => {
   console.log("listening on *:3001");
