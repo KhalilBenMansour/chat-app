@@ -1,0 +1,91 @@
+@use "../../sass/abstracts/variables" as *;
+@use "../../sass/abstracts/mixins" as *;
+.signup-background {
+  background-color: $mainColor;
+  height: 100vh;
+  @include centering;
+  .signup-container {
+    background-color: white;
+    width: 250px;
+    height: 400px;
+    border-radius: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: stretch;
+    .signup-header {
+      flex: 1;
+      width: 200px;
+      text-align: center;
+      .form-title {
+        color: $mainColor;
+        padding: 0.5em 0;
+        border-bottom: 2px solid $mainColor;
+      }
+    }
+    .signup-form {
+      flex: 4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .signup-group {
+        padding: 5px;
+        @include centering;
+        .signup-item {
+          border: 1px solid gray;
+          padding: 5px;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          margin: 0 5px;
+          @include centering;
+          cursor: pointer;
+          &:hover {
+            border: 1px solid $mainColor;
+            font-size: 1.25em;
+          }
+        }
+      }
+      .text-signup {
+        color: gray;
+        padding: 0.5em 0;
+        font-size: 0.75em;
+      }
+      .input-div {
+        padding: 0 0 0.5em 0;
+        height: 2.5em;
+        position: relative;
+        .user-icon {
+          position: absolute;
+          top: 5px;
+          color: $mainColor;
+        }
+        .input-field {
+          padding: 5px 5px 5px 20px;
+          height: 100%;
+          border-bottom: 2px solid gray;
+          &:focus {
+            border-bottom: 2px solid $mainColor;
+          }
+        }
+      }
+    }
+    .signup-footer {
+      flex: 1;
+      .button-signup {
+        width: 100px;
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+        border-radius: 1em;
+        color: gray;
+        border: 2px solid gray;
+        &:hover {
+          color: $mainColor;
+          border: 2px solid $mainColor;
+        }
+      }
+    }
+  }
+}
