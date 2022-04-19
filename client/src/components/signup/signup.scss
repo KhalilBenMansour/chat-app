@@ -69,13 +69,12 @@
           }
         }
       }
-    }
-    .signup-footer {
-      flex: 1;
       .button-signup {
         width: 100px;
         padding: 5px;
+        margin-top: 1em;
         display: flex;
+
         justify-content: space-between;
         cursor: pointer;
         border-radius: 1em;
@@ -85,6 +84,17 @@
           color: $mainColor;
           border: 2px solid $mainColor;
         }
+      }
+    }
+  }
+  .signup-footer {
+    flex: 1;
+    padding: 1em 0;
+    font-size: 0.9em;
+    .login-div {
+      color: gray;
+      .login-link {
+        color: $mainColor;
       }
     }
   }
