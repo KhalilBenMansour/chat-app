@@ -8,7 +8,6 @@ import { Routes, Route } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-      {/* <ChatBox /> */}
       <Routes>
         <Route path="/" element={<Container />} />
         <Route path="/login" element={<Login />} />
