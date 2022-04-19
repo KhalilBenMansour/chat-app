@@ -4,6 +4,7 @@ import { MdPassword, MdAlternateEmail } from "react-icons/md";
 import { IoIosCreate } from "react-icons/io";
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   return (
@@ -54,12 +55,18 @@ const Signup = () => {
               placeholder="password"
             />
           </div>
-        </form>
-        <div className="signup-footer">
           <button className="button-signup">
             <span className="button-text">Sign Up</span>
             <IoIosCreate className="button-icon" />
           </button>
+        </form>
+        <div className="signup-footer">
+          <p className="login-div">
+            Already have an account ?{" "}
+            <Link to="/login" className="login-link">
+              Log In{" "}
+            </Link>
+          </p>
         </div>
       </div>
     </div>

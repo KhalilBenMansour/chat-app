@@ -4,6 +4,7 @@ import { MdPassword } from "react-icons/md";
 import { FaSignOutAlt } from "react-icons/fa";
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -46,12 +47,26 @@ const Login = () => {
           <div className="forgot-div">
             <a href="#">forgot your password ?</a>
           </div>
+          <div className="check-div">
+            <input type="checkbox" id="remember" className="check-input" />
+            <label htmlFor="remember" className="check-label">
+              remember me
+            </label>
+          </div>
+          <Link to="/">
+            <button className="button-login">
+              <span className="button-text">Log In</span>
+              <FaSignOutAlt className="button-icon" />
+            </button>
+          </Link>
         </form>
         <div className="login-footer">
-          <button className="button-login">
-            <span className="button-text">Log In</span>
-            <FaSignOutAlt className="button-icon" />
-          </button>
+          <p className="register-div">
+            Don't have an account ?{" "}
+            <Link to="/signup" className="register-link">
+              Register{" "}
+            </Link>
+          </p>
         </div>
       </div>
     </div>
