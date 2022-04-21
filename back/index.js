@@ -40,6 +40,7 @@ io.on("connection", (socket) => {
 app.use("/api/users", users);
 app.use("/api/message", message);
 
-server.listen(3001, () => {
-  console.log("listening on *:3001");
+const port = process.env.PORT || 5000;
+server.listen(port, () => {
+  console.log(`server listening on port ${port}`);
 });
