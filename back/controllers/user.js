@@ -50,10 +50,16 @@ const verifyUser = async (req, res) => {
     const user = await User.findOne({
       confirmCode: req.params.confirmCode,
     });
+
     if (!user) {
       return res.status(400).send({ msg: "User not found" });
     }
-    await User.updateOne({ _id: user._id }, { $set: { verified: true } });
+    await User.findOneAndUpdate(
+      { _id: user._id },
+      { $set: { verified: true } },
+      { new: true }
+    );
+
     res.status(200).json({ msg: "email verified with success", user });
   } catch (e) {
     res.status(500).json({ msg: "failed to verify user", e });
@@ -79,6 +85,11 @@ const logIn = async (req, res) => {
     const originalPass = hashedPass.toString(CryptoJs.enc.Utf8);
     if (originalPass !== password) {
       return res.status(401).send({ msg: "Wrong credentials!" });
+    }
+    if (!user.verified) {
+      return res
+        .status(401)
+        .json({ msg: "pending Account. Please verify your Email!" });
     }
     // create token
     const payload = {

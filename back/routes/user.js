@@ -5,7 +5,7 @@ const { auth } = require("../middelwares/auth");
 const router = express.Router();
 
 router.post("/signup", userValidate, signUp);
-router.get("/verify/:id/:confirmationCode", verifyUser);
+router.get("/verify/:id/:confirmCode", verifyUser);
 router.post("/login", logIn);
 router.get("/currentuser", auth, (req, res) => {
   res.status(200).send(req.user);
