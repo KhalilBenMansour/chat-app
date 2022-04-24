@@ -21,6 +21,8 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  confirmCode: { type: String },
+
   photo: {
     type: String,
   },
