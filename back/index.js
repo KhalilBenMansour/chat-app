@@ -9,7 +9,6 @@ const cors = require("cors");
 const users = require("./routes/user");
 const message = require("./routes/message");
 
-const mongoose = require("mongoose");
 const connectDb = require("./config/connectDb");
 
 // config

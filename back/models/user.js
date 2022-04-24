@@ -7,6 +7,7 @@ const UserSchema = new mongoose.Schema({
     min: 3,
     max: 255,
     required: true,
+    unique: true,
   },
   email: {
     type: String,
@@ -21,6 +22,8 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  confirmCode: { type: String },
+
   photo: {
     type: String,
   },
