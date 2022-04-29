@@ -5,15 +5,33 @@ import { FaSignOutAlt } from "react-icons/fa";
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../store/userSlice";
 
 const Login = () => {
+  const [input, setInput] = useState({ userName: "", password: "" });
+
+  const dispatch = useDispatch();
+
+  const handleChange = (e) => {
+    setInput((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(loginUser(input));
+    setInput({ userName: "", password: "" });
+  };
   return (
     <div className="login-background">
       <div className="login-container">
         <div className="login-header">
           <h3 className="form-title">Log In</h3>
         </div>
-        <form action="" className="login-form">
+        <form action="" className="login-form" onSubmit={handleSubmit}>
           <div className="login-group">
             <div className="login-item">
               <BsFacebook />
@@ -29,9 +47,11 @@ const Login = () => {
             <AiOutlineUser className="user-icon" />
             <input
               type="text"
-              name="username"
+              name="userName"
               className="input-field"
               placeholder="username"
+              value={input.userName}
+              onChange={handleChange}
             />
           </div>
 
@@ -42,6 +62,8 @@ const Login = () => {
               name="password"
               className="input-field"
               placeholder="password"
+              value={input.password}
+              onChange={handleChange}
             />
           </div>
           <div className="forgot-div">
@@ -53,12 +75,12 @@ const Login = () => {
               remember me
             </label>
           </div>
-          <Link to="/">
-            <button className="button-login">
-              <span className="button-text">Log In</span>
-              <FaSignOutAlt className="button-icon" />
-            </button>
-          </Link>
+          {/* <Link to="/"> */}
+          <button className="button-login">
+            <span className="button-text">Log In</span>
+            <FaSignOutAlt className="button-icon" />
+          </button>
+          {/* </Link> */}
         </form>
         <div className="login-footer">
           <p className="register-div">
