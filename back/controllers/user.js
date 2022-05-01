@@ -37,12 +37,17 @@ const signUp = async (req, res) => {
 
     // save user
     await createdUser.save();
-    res.status(201).send({
-      msg: "user added successfully! Please check your email",
-      createdUser,
-    });
+    res
+      .status(201)
+      .send({
+        success: false,
+        msg: "user added successfully! Please check your email",
+        createdUser,
+      });
   } catch (e) {
-    return res.status(500).json({ msg: "user sign up failed", e });
+    return res
+      .status(500)
+      .json({ success: false, msg: "user sign up failed", e });
   }
 };
 const verifyUser = async (req, res) => {
@@ -52,7 +57,7 @@ const verifyUser = async (req, res) => {
     });
 
     if (!user) {
-      return res.status(400).send({ msg: "User not found" });
+      return res.status(400).send({ success: false, msg: "User not found" });
     }
     await User.findOneAndUpdate(
       { _id: user._id },
@@ -60,22 +65,28 @@ const verifyUser = async (req, res) => {
       { new: true }
     );
 
-    res.status(200).json({ msg: "email verified with success", user });
+    res
+      .status(200)
+      .json({ success: true, msg: "email verified with success", user });
   } catch (e) {
-    res.status(500).json({ msg: "failed to verify user", e });
+    res.status(500).json({ success: false, msg: "failed to verify user", e });
   }
 };
 const logIn = async (req, res) => {
   const { userName, password } = req.body;
   // require all fields
   if (!userName || !password) {
-    return res.status(400).json({ msg: "enter all fields value" });
+    return res
+      .status(400)
+      .json({ success: false, msg: "enter all fields value" });
   }
   try {
     // username
     const user = await User.findOne({ userName });
     if (!user) {
-      return res.status(400).send({ msg: "There is no such user" });
+      return res
+        .status(400)
+        .send({ success: false, msg: "There is no such user" });
     }
     // password
     const hashedPass = CryptoJs.AES.decrypt(
@@ -84,12 +95,15 @@ const logIn = async (req, res) => {
     );
     const originalPass = hashedPass.toString(CryptoJs.enc.Utf8);
     if (originalPass !== password) {
-      return res.status(401).send({ msg: "Wrong credentials!" });
-    }
-    if (!user.verified) {
       return res
         .status(401)
-        .json({ msg: "pending Account. Please verify your Email!" });
+        .send({ success: false, msg: "Wrong credentials!" });
+    }
+    if (!user.verified) {
+      return res.status(401).json({
+        success: false,
+        msg: "pending Account. Please verify your Email!",
+      });
     }
     // create token
     const payload = {
@@ -98,9 +112,13 @@ const logIn = async (req, res) => {
     };
     const token = generateToken(payload);
 
-    res.status(201).send({ msg: "user login with success", token });
+    res
+      .status(201)
+      .send({ success: true, msg: "user login with success", token });
   } catch (e) {
-    return res.status(500).json({ msg: "user login failed", e });
+    return res
+      .status(500)
+      .json({ success: false, msg: "user login failed", e });
   }
 };
 
