@@ -30,6 +30,9 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     loading: false,
+    loginSuccess: false,
+    error: null,
+    message: null,
   },
   reducers: {},
   extraReducers: {
@@ -39,12 +42,11 @@ const userSlice = createSlice({
     },
     [loginUser.fulfilled]: (state, action) => {
       state.loading = false;
-      console.log(action);
+      state.loginSuccess = action.payload.success;
       state.message = action.payload.msg;
     },
     [loginUser.rejected]: (state, action) => {
       state.loading = false;
-      console.log(action.payload);
       state.error = action.payload;
     },
   },
