@@ -4,18 +4,22 @@ import { MdPassword } from "react-icons/md";
 import { FaSignOutAlt } from "react-icons/fa";
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../store/userSlice";
 
 const Login = () => {
   const [input, setInput] = useState({ userName: "", password: "" });
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loading, message, loginSuccess, error } = useSelector(
+  const { loading, message, loginSuccess, isAuth } = useSelector(
     (state) => state.user
   );
+
+  useEffect(() => {
+    isAuth && navigate("/");
+  }, [isAuth, navigate]);
 
   const handleChange = (e) => {
     setInput((prevState) => ({
