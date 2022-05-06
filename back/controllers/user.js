@@ -37,13 +37,11 @@ const signUp = async (req, res) => {
 
     // save user
     await createdUser.save();
-    res
-      .status(201)
-      .send({
-        success: false,
-        msg: "user added successfully! Please check your email",
-        createdUser,
-      });
+    res.status(201).send({
+      success: false,
+      msg: "user added successfully! Please check your email",
+      createdUser,
+    });
   } catch (e) {
     return res
       .status(500)
@@ -78,7 +76,7 @@ const logIn = async (req, res) => {
   if (!userName || !password) {
     return res
       .status(400)
-      .json({ success: false, msg: "enter all fields value" });
+      .send({ success: false, msg: "enter all fields value" });
   }
   try {
     // username
@@ -109,6 +107,7 @@ const logIn = async (req, res) => {
     const payload = {
       id: user._id,
       email: user.email,
+      userName: user.userName,
     };
     const token = generateToken(payload);
 
