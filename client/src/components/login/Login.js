@@ -4,15 +4,22 @@ import { MdPassword } from "react-icons/md";
 import { FaSignOutAlt } from "react-icons/fa";
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../store/userSlice";
 
 const Login = () => {
   const [input, setInput] = useState({ userName: "", password: "" });
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { loading, message, loginSuccess, isAuth } = useSelector(
+    (state) => state.user
+  );
+
+  useEffect(() => {
+    isAuth && navigate("/");
+  }, [isAuth, navigate]);
 
   const handleChange = (e) => {
     setInput((prevState) => ({
@@ -89,6 +96,17 @@ const Login = () => {
               Register{" "}
             </Link>
           </p>
+          {loading ? (
+            <div className="spinner-container">
+              <div className="spinner"></div>
+            </div>
+          ) : (
+            <div className={loginSuccess ? "success-div" : "error-div"}>
+              <p className={loginSuccess ? "success-msg" : "error-msg"}>
+                {message}
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>

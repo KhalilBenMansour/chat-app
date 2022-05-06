@@ -21,3 +21,8 @@
     cursor: pointer;
   }
 }
+@mixin keyF($anime-name) {
+  @keyframes #{$anime-name} {
+    @content;
+  }
+}
