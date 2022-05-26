@@ -6,6 +6,13 @@ const crypto = require("crypto");
 
 const signUp = async (req, res) => {
   try {
+    // userName unique
+    // const newUser = await User.findOne({ userName: req.body.userName });
+    // if (newUser) {
+    //   return res
+    //     .status(400)
+    //     .json({ success: false, msg: "userName is already exist" });
+    // }
     // email unique
     const user = await User.findOne({ email: req.body.email });
     if (user && user.verified) {
@@ -28,9 +35,9 @@ const signUp = async (req, res) => {
     // send activation mail
 
     createdUser.confirmCode = crypto.randomBytes(20).toString("hex");
-
     // user.activeExpires = Date.now() + 24 * 3600 * 1000;
-    const message = `${process.env.BASE_URL}/api/users/verify/${createdUser._id}/${createdUser.confirmCode}`;
+    // ${process.env.BASE_URL}/api/users
+    const message = `http://localhost:3000/verify/${createdUser._id}/${createdUser.confirmCode}`;
 
     await sendEmail(req.body.email, "Verify email", message);
     console.log(createdUser);
@@ -38,7 +45,7 @@ const signUp = async (req, res) => {
     // save user
     await createdUser.save();
     res.status(201).send({
-      success: false,
+      success: true,
       msg: "user added successfully! Please check your email",
       createdUser,
     });
@@ -57,7 +64,7 @@ const verifyUser = async (req, res) => {
     if (!user) {
       return res.status(400).send({ success: false, msg: "User not found" });
     }
-    await User.findOneAndUpdate(
+    let newUser = await User.findOneAndUpdate(
       { _id: user._id },
       { $set: { verified: true } },
       { new: true }
@@ -65,7 +72,7 @@ const verifyUser = async (req, res) => {
 
     res
       .status(200)
-      .json({ success: true, msg: "email verified with success", user });
+      .json({ success: true, msg: "email verified with success", newUser });
   } catch (e) {
     res.status(500).json({ success: false, msg: "failed to verify user", e });
   }
