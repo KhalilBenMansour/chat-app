@@ -1,5 +1,6 @@
 @use "../../sass/abstracts/variables" as *;
 @use "../../sass/abstracts/mixins" as *;
+$states: error, success;
 .signup-background {
   background-color: $mainColor;
   height: 100vh;
@@ -89,12 +90,47 @@
   }
   .signup-footer {
     flex: 1;
-    padding: 1em 0;
+    padding: 1em 0.5em;
     font-size: 0.9em;
     .login-div {
       color: gray;
       .login-link {
         color: $mainColor;
+      }
+    }
+    .spinner-container {
+      @include centering;
+      .spinner {
+        width: 30px;
+        height: 30px;
+        border: 5px solid #ddd;
+        border-radius: 50%;
+        border-top-color: $mainColor;
+        border-left-color: $mainColor;
+        animation: spin 1s infinite ease-in-out;
+        @include keyF(spin) {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+      }
+    }
+    @each $state in $states {
+      .#{$state}-div {
+        @include centering;
+        @if ($state== "error") {
+          color: red;
+        } @else {
+          color: green;
+        }
+        @if ($state== "error") {
+          background-color: rgb(255, 170, 170);
+        } @else {
+          background-color: rgb(170, 255, 170);
+        }
       }
     }
   }
