@@ -13,7 +13,7 @@ const Login = () => {
   const [input, setInput] = useState({ userName: "", password: "" });
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loading, message, loginSuccess, isAuth } = useSelector(
+  const { loading, messageL, loginSuccess, isAuth } = useSelector(
     (state) => state.user
   );
 
@@ -100,13 +100,13 @@ const Login = () => {
             <div className="spinner-container">
               <div className="spinner"></div>
             </div>
-          ) : (
+          ) : messageL ? (
             <div className={loginSuccess ? "success-div" : "error-div"}>
               <p className={loginSuccess ? "success-msg" : "error-msg"}>
-                {message}
+                {messageL}
               </p>
             </div>
-          )}
+          ) : null}
         </div>
       </div>
     </div>
