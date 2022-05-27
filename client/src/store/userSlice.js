@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import storage from "redux-persist/lib/storage";
 import axios from "axios";
+import persistReducer from "redux-persist/es/persistReducer";
 
 const BASE_URL = "http://localhost:3001/api/users";
 
@@ -75,8 +77,6 @@ const userSlice = createSlice({
       state.isAuth = action.payload.success;
       state.messageL = action.payload.msg;
       state.token = action.payload.token;
-
-      localStorage.setItem("token", action.payload.token);
     },
     [loginUser.rejected]: (state, action) => {
       console.log(action);
@@ -122,4 +122,10 @@ const userSlice = createSlice({
     },
   },
 });
-export default userSlice.reducer;
+const persistConfig = {
+  key: "auth",
+  storage: storage,
+  whitelist: ["token", "isAuth"],
+};
+
+export default persistReducer(persistConfig, userSlice.reducer);
