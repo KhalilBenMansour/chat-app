@@ -5,8 +5,17 @@ import Signup from "./components/signup/Signup";
 import { Routes, Route } from "react-router-dom";
 import Private from "./components/private/Private";
 import Welcome from "./components/welcome/Welcome";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "./store/userSlice";
 
 function App() {
+  const dispatch = useDispatch();
+  const { isAuth } = useSelector((state) => state.user);
+  useEffect(() => {
+    isAuth && dispatch(getUser());
+  }, [dispatch, isAuth]);
+
   return (
     <div className="App">
       <Routes>
