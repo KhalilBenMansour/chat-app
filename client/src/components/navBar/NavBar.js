@@ -1,6 +1,13 @@
+import { useDispatch } from "react-redux";
+import { logout } from "../../store/userSlice";
 import "./navBar.scss";
 const NavBar = () => {
-  return <div className="navBar">navbar</div>;
+  const dispatch = useDispatch();
+  return (
+    <div className="navBar">
+      <button onClick={() => dispatch(logout())}>logout</button>
+    </div>
+  );
 };
 
 export default NavBar;
