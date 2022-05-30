@@ -12,8 +12,8 @@ export const loginUser = createAsyncThunk(
 
     try {
       const res = await axios.post(`${BASE_URL}/login`, userCred);
-      const data = res.data;
-      return data;
+
+      return res.data;
     } catch (error) {
       console.log(error);
       return rejectWithValue(error.response.data);
@@ -48,6 +48,22 @@ export const verifyUser = createAsyncThunk(
     }
   }
 );
+export const getUser = createAsyncThunk("user/getUser", async (_, thunkAPI) => {
+  const { rejectWithValue, getState } = thunkAPI;
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getState().user.token}`,
+    },
+  };
+  try {
+    const res = await axios.get(`${BASE_URL}/currentUser`, config);
+
+    return res.data;
+  } catch (error) {
+    return rejectWithValue(error.response.data);
+  }
+});
 
 const userSlice = createSlice({
   name: "user",
@@ -58,12 +74,14 @@ const userSlice = createSlice({
     token: null,
     isAuth: false,
     error: null,
-    messageR: null,
-    messageL: null,
-    messageV: null,
     verified: false,
   },
-  reducers: {},
+  reducers: {
+    logout: async (state, action) => {
+      await storage.removeItem("persist:auth");
+      state.isAuth = false;
+    },
+  },
   extraReducers: {
     // loginUser
     [loginUser.pending]: (state, action) => {
@@ -75,7 +93,7 @@ const userSlice = createSlice({
       state.loading = false;
       state.loginSuccess = action.payload.success;
       state.isAuth = action.payload.success;
-      state.messageL = action.payload.msg;
+      // state.messageL = action.payload.msg;
       state.token = action.payload.token;
     },
     [loginUser.rejected]: (state, action) => {
@@ -120,6 +138,40 @@ const userSlice = createSlice({
       state.verified = false;
       state.messageV = action.payload.msg;
     },
+    // get user
+    [getUser.pending]: (state, action) => {
+      state.loading = true;
+      state.error = null;
+    },
+    [getUser.fulfilled]: (state, action) => {
+      console.log(action);
+      state.loading = false;
+      state.verified = true;
+      state.user = action.payload;
+    },
+    [getUser.rejected]: (state, action) => {
+      console.log(action);
+      state.loading = false;
+      state.verified = false;
+      state.error = action.payload;
+    },
+    // get user
+    [getUser.pending]: (state, action) => {
+      state.loading = true;
+      state.error = null;
+    },
+    [getUser.fulfilled]: (state, action) => {
+      console.log(action);
+      state.loading = false;
+      state.verified = true;
+      state.user = action.payload;
+    },
+    [getUser.rejected]: (state, action) => {
+      console.log(action);
+      state.loading = false;
+      state.verified = false;
+      state.error = action.payload;
+    },
   },
 });
 const persistConfig = {
@@ -127,5 +179,5 @@ const persistConfig = {
   storage: storage,
   whitelist: ["token", "isAuth"],
 };
-
+export const { logout } = userSlice.actions;
 export default persistReducer(persistConfig, userSlice.reducer);
